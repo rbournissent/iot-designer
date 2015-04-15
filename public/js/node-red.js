@@ -20,6 +20,7 @@
             $(".rotate").hide();
             $('iframe').show();
         });
+
     }
 })($);
 
@@ -56,6 +57,10 @@
     $scope.logout = function() {
       localStorage.removeItem('user');
       window.location.href = "login.html";
+    }
+
+    $scope.deployProject = function() {
+        $("iframe").contents().find('#btn-deploy')[0].click();
     }
 
   }
