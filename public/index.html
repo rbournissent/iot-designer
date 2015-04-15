@@ -9,6 +9,15 @@
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
         display: none !important;
       }
+      form.project{
+        position: relative;
+      }
+      form.project a{
+        position: absolute;
+        right: 0;
+        top: 3px;
+      }
+
     </style>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,6 +50,9 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.html">Dashboard</a></li>
+            <li><a href="">Getting Started</a></li>
+            <li><a href="">Documentation</a></li>
+            <li><a href="">Pricing</a></li>
             <li role="presentation" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 {{ user.inputEmail }} <span class="caret"></span>
@@ -72,19 +84,18 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Project Name</th>
+                  <th>Project</th>
                   <th>Flows</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="project in projects | filter:inputSearch | orderBy:'id' track by project.id">
-                  <td>{{ project.id }}</td>
                   <td>
                     <div ng-show="project.editionMode">
-                      <form ng-submit="saveProject(project)" role="form">
+                      <form ng-submit="saveProject(project)" role="form" class="project">
                         <input type="text" class="form-control" ng-model="project.name" required>
+                        <a class="btn btn-sm" ng-click="project.editionMode = false" title="Cancel"> <span class="glyphicon glyphicon-remove"></span> </a>
                       </form>
                     </div>
                     <div ng-hide="project.editionMode">
@@ -95,7 +106,7 @@
                   </td>
                   <td>
                     <a href="node-red.html" title="Manage Flows for this Project">
-                      {{ (flows | filter: { project_id: project.id }).length }}
+                      1
                     </a>
                   </td>
                   <td>
