@@ -24,9 +24,9 @@
   <body>
 
     <div class="container" ng-app="login" ng-controller="LoginController as vm">
-
+      <h1 class='text-center'>IoT Designer</h1>
       <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h3 class="form-signin-heading">Please sign in</h3>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" id="inputEmail" ng-model="vm.user.inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -36,7 +36,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="vm.saveUser(vm.user)">Sign in</button>
+        <button class="btn btn-md btn-primary btn-block" type="submit" ng-click="vm.saveUser(vm.user)">Sign in</button>
       </form>
 
     </div> <!-- /container -->

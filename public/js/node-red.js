@@ -5,6 +5,24 @@
     .module('iotDesigner.project-details', []);
 })();
 
+(function($) {
+  'use strict';
+
+  angular
+    .module('iotDesigner.project-details')
+    .run(hideNRHeader);
+
+    function hideNRHeader() {
+        $('iframe').hide();
+        $('iframe').load(function() {
+            $("iframe").contents().find("#header").hide();
+            $("iframe").contents().find("#main-container").css("top", 0);
+            $(".rotate").hide();
+            $('iframe').show();
+        });
+    }
+})($);
+
 (function() {
   'use strict';
 

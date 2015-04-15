@@ -6,9 +6,45 @@
 
     <title>IoT Designer</title>
     <style>
-      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
         display: none !important;
-      }
+        }
+
+        .rotate {
+            margin: 200px;
+            font-size: 5em;
+            color: #888;
+            -webkit-animation: rotate 5s infinite;
+            -moz-animation: rotate 5s infinite;
+            -ms-animation: rotate 5s infinite;
+            animation: rotate 5s infinite;
+            -webkit-animation-timing-function: linear;
+            -moz-animation-timing-function: linear;
+            -ms-animation-timing-function: linear;
+            animation-timing-function: linear;
+        }
+
+        @-webkit-keyframes rotate {
+            100%{ -webkit-transform: rotate(360deg)}
+        }
+
+        @-moz-keyframes rotate {
+            100%{ -webkit-transform: rotate(360deg)}
+        }
+
+        @-ms-keyframes rotate {
+            100%{ -webkit-transform: rotate(360deg)}
+        }
+
+        @keyframes rotate {
+            100%{
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                transform: rotate(360deg)
+            }
+        }
+
     </style>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -58,9 +94,11 @@
       <div class="row">
 
         <div class="col-sm-12 col-md-12 main">
-          <h1 class="sub-header">{{project.name}}</h1>
-
-          <iframe src="./red" width="100%" height="600" frameborder="0"></iframe>
+            <h1 class="sub-header">{{project.name}}</h1>
+            <p class="text-center">
+              <span class="glyphicon glyphicon-refresh rotate"></span>
+            </p>
+            <iframe src="./red" width="100%" height="600" frameborder="0"></iframe>
         </div>
       </div>
     </div>
