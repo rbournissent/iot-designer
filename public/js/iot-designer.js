@@ -5,6 +5,21 @@
     .module('iotDesigner', []);
 })();
 
+(function($) {
+  'use strict';
+
+  angular
+    .module('iotDesigner')
+    .run(hideNRHeader);
+
+    function hideNRHeader() {
+        $('iframe').load(function() {
+            $("iframe").contents().find("#header").hide();
+            $("iframe").contents().find("#main-container").css("top", 0);
+        });
+    }
+})($);
+
 (function() {
   'use strict';
 
