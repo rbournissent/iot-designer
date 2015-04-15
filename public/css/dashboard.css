@@ -112,3 +112,19 @@ footer {
   bottom: 0;
   right: 0;
 }
+
+#logo {
+  display: inline-block;
+}
+
+.navbar {
+  min-height: 65px;
+}
+
+.navbar .container-fluid {
+  margin-top: 8px;
+}
+
+.navbar-brand {
+  margin-top: -14px;
+}
