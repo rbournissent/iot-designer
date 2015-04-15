@@ -1,0 +1,16 @@
+{
+  "name": "iot-designer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "CC0",
+  "dependencies": {
+    "express": "^4.12.3",
+    "node-red": "^0.10.6"
+  }
+}
