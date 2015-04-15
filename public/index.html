@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)http://getbootstrap.com/examples/dashboard/# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +6,7 @@
 
     <title>IoT Designer</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -50,7 +46,7 @@
             </li>
           </ul>
           <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" ng-model="inputSearch" placeholder="Search...">
           </form>
         </div>
       </div>
@@ -60,9 +56,10 @@
       <div class="row">
 
         <div class="col-sm-12 col-md-12 main">
-          <h1 class="page-header">Dashboard</h1>
-
-          <h2 class="sub-header">My Projects</h2>
+          <h1 class="sub-header">
+            My Projects
+            <button ng-click="addProject()" class="btn btn-primary btn-lg pull-right">+ New Project</button>
+          </h1>
           <div ng-hide="projects.length">
             <p class="text-info">You have no projects :(</p>
           </div>
@@ -77,12 +74,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="project in projects">
+                <tr ng-repeat="project in projects | filter:inputSearch | orderBy:'id' track by project.id">
                   <td>{{ project.id }}</td>
                   <td>
                     <div ng-show="project.editionMode">
-                      <form ng-submit="project.editionMode = false" role="form">
-                        <input type="text" class="form-control" ng-model="project.name">
+                      <form ng-submit="saveProject(project)" role="form">
+                        <input type="text" class="form-control" ng-model="project.name" required>
                       </form>
                     </div>
                     <div ng-hide="project.editionMode">
@@ -97,7 +94,7 @@
                     </a>
                   </td>
                   <td>
-                    <a class="btn btn-primary btn-sm" ng-click="project.editionMode = !project.editionMode" ng-init="project.editionMode = false" title="Edit">
+                    <a class="btn btn-primary btn-sm" ng-click="project.editionMode = !project.editionMode" title="Edit">
                       <span class="glyphicon glyphicon-pencil"></span>
                     </a>
                     <a class="btn btn-danger btn-sm" ng-click="removeProject($index)" title="Delete">
