@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>IoT Designer</title>
+    <style>
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
@@ -20,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body ng-app="iotDesigner" ng-controller="DashboardController">
+  <body class="ng-cloak" ng-app="iotDesigner.project-details" ng-controller="ProjectDetailsController">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -53,7 +58,7 @@
       <div class="row">
 
         <div class="col-sm-12 col-md-12 main">
-          <h1 class="sub-header">Isn't AT&T</h1>
+          <h1 class="sub-header">{{project.name}}</h1>
 
           <iframe src="./red" width="100%" height="600" frameborder="0"></iframe>
         </div>
@@ -63,7 +68,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script src="js/iot-designer.js"></script>
+    <script src="js/node-red.js"></script>
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

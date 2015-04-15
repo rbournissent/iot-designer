@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>IoT Designer</title>
+    <style>
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
@@ -20,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body ng-app="iotDesigner" ng-controller="DashboardController">
+  <body class="ng-cloak" ng-app="iotDesigner" ng-controller="DashboardController">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -83,7 +88,7 @@
                       </form>
                     </div>
                     <div ng-hide="project.editionMode">
-                      <a href="node-red.html" title="Manage Flows for this Project">
+                      <a data-ng-click="selectProject(project)" href="" title="Manage Flows for this Project">
                         {{ project.name }}
                       </a>
                     </div>

@@ -15,13 +15,16 @@
   function LoginController() {
     var vm = this;
     vm.title = 'LoginController';
-    vm.user = {};
+    vm.user = {
+      inputEmail: 'admin',
+      inputPassword: 'admin'
+    };
 
     vm.saveUser = saveUser;
 
-    function saveUser (user) {
+    function saveUser(user) {
       localStorage.setItem('user', JSON.stringify(user));
       window.location.href = 'index.html';
     }
-}
+  }
 })();

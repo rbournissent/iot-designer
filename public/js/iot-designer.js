@@ -30,7 +30,16 @@
   function DashboardController($scope, $http) {
     var vm = this;
     vm.title = 'DashboardController';
-    $scope.user = JSON.parse(localStorage.getItem('user'));
+
+    localStorage.removeItem('selected-project');
+
+    try {
+      $scope.user = JSON.parse(localStorage.getItem('user'));
+    } catch (e) {
+      $scope.user = null;
+    }
+
+
 
     if (!$scope.user) {
       window.location.href = 'login.html';
@@ -65,7 +74,12 @@
       project.editionMode = false;
       project.id = $scope.projects.filter(function(p) {
         return p.id;
-      }).length+1;
+      }).length + 1;
+    }
+
+    $scope.selectProject = function(project) {
+      localStorage.setItem('selected-project', JSON.stringify(project));
+      window.location.href = "node-red.html";
     }
 
   }
