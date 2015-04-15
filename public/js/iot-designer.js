@@ -17,7 +17,7 @@
     vm.title = 'DashboardController';
     $scope.user = JSON.parse(localStorage.getItem('user'));
 
-    if(!$scope.user) {
+    if (!$scope.user) {
       window.location.href = 'login.html';
     }
 
@@ -38,6 +38,19 @@
     $scope.logout = function() {
       localStorage.removeItem('user');
       window.location.href = "login.html";
+    }
+
+    $scope.addProject = function() {
+      $scope.projects.push({
+        editionMode: true
+      });
+    }
+
+    $scope.saveProject = function(project) {
+      project.editionMode = false;
+      project.id = $scope.projects.filter(function(p) {
+        return p.id;
+      }).length+1;
     }
 
   }
