@@ -10,7 +10,8 @@
 
   angular
     .module('iotDesigner')
-    .controller('DashboardController', DashboardController);
+    .controller('DashboardController', DashboardController)
+    .directive('showFocus', showFocus);
 
   function DashboardController($scope, $http) {
     var vm = this;
@@ -67,5 +68,16 @@
       window.location.href = "node-red.html";
     }
 
+  }
+
+  function showFocus($timeout) {
+    return function(scope, element, attrs) {
+      scope.$watch(attrs.showFocus,
+        function (newValue) {
+          $timeout(function() {
+              newValue && element.focus();
+          });
+        },true);
+    }
   }
 })();

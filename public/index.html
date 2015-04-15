@@ -97,7 +97,7 @@
                   <td>
                     <div ng-show="project.editionMode">
                       <form ng-submit="saveProject(project)" role="form" class="project">
-                        <input type="text" class="form-control" ng-model="project.name" required>
+                        <input type="text" class="form-control" ng-model="project.name" required show-focus="project.editionMode">
                         <a class="btn btn-sm" ng-click="project.editionMode = false" title="Cancel"> <span class="glyphicon glyphicon-remove"></span> </a>
                       </form>
                     </div>
