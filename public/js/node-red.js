@@ -76,7 +76,12 @@
       // them on LS
       $timeout(function() {
         saveProjectToLS($scope.project);
-      }, 2000);
+      }, 1000);
+
+      // If there is an error on the flow the user is asked to confirm the deployment
+      $('iframe').contents().find('div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button').click(function () {
+        saveProjectToLS($scope.project);
+      })
     }
 
     function saveProjectToLS(project) {
@@ -98,6 +103,7 @@
             }
           }
 
+          localStorage.setItem('selected-project', JSON.stringify(project));
           localStorage.setItem('projects', JSON.stringify(projects));
         });
 
