@@ -17,32 +17,39 @@
     var vm = this;
     vm.title = 'DashboardController';
 
-    localStorage.removeItem('selected-project');
+    function activate() {
+      localStorage.removeItem('selected-project');
 
-    try {
-      $scope.user = JSON.parse(localStorage.getItem('user'));
-    } catch (e) {
-      $scope.user = null;
+      try {
+        $scope.user = JSON.parse(localStorage.getItem('user'));
+      } catch (e) {
+        $scope.user = null;
+      }
+
+      try {
+        $scope.projects = JSON.parse(localStorage.getItem('projects'));
+      } catch (e) {
+        $scope.projects = null;
+      }
+
+      if (!$scope.projects || !$scope.projects.length) {
+        $http.get('data/projects.json')
+          .success(function(data) {
+            $scope.projects = data;
+            saveProjectsToLS($scope.projects);
+          });
+      }
+
+      if (!$scope.user) {
+        window.location.href = 'login.html';
+      }
     }
 
-
-
-    if (!$scope.user) {
-      window.location.href = 'login.html';
-    }
-
-    $http.get('data/projects.json')
-      .success(function(data) {
-        $scope.projects = data;
-      });
-
-    $http.get('data/flows.json')
-      .success(function(data) {
-        $scope.flows = data;
-      });
+    activate();
 
     $scope.removeProject = function(index) {
       $scope.projects.splice(index, 1);
+      saveProjectsToLS($scope.projects);
     }
 
     $scope.logout = function() {
@@ -52,7 +59,8 @@
 
     $scope.addProject = function() {
       $scope.projects.push({
-        editionMode: true
+        editionMode: true,
+        flows: []
       });
     }
 
@@ -61,6 +69,8 @@
       project.id = $scope.projects.filter(function(p) {
         return p.id;
       }).length + 1;
+
+      saveProjectsToLS($scope.projects);
     }
 
     $scope.selectProject = function(project) {
@@ -68,16 +78,20 @@
       window.location.href = "node-red.html";
     }
 
+    function saveProjectsToLS(projects) {
+      localStorage.setItem('projects', JSON.stringify(projects));
+    }
+
   }
 
   function showFocus($timeout) {
     return function(scope, element, attrs) {
       scope.$watch(attrs.showFocus,
-        function (newValue) {
+        function(newValue) {
           $timeout(function() {
-              newValue && element.focus();
+            newValue && element.focus();
           });
-        },true);
+        }, true);
     }
   }
 })();
